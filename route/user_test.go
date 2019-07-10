@@ -37,7 +37,7 @@ func (suite *UserTestSuite) TestUserList() {
 	rec := httptest.NewRecorder()
 	e.ServeHTTP(rec, req)
 	suite.Equal(rec.Code, http.StatusOK)
-	suite.Equal(rec.Body.String(), "User List")
+	suite.Equal("User List", rec.Body.String())
 }
 
 func TestUserSuite(t *testing.T) {
