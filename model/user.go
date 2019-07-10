@@ -10,6 +10,7 @@ type User struct {
 	Name         string
 	Email        string  `gorm:"type:varchar(100);unique_index"`
 }
+
 type UserList []User
 
 func (user *User) Create(db *conn.DBClient) {
@@ -24,6 +25,6 @@ func (user *User) Get(db *conn.DBClient, query interface{}, args ...interface{})
 	db.Where(query, args).Find(user)
 }
 
-func (users UserList) Find(db *conn.DBClient, offset int, limit int, query interface{}, args ...interface{}) {
+func (users *UserList) Find(db *conn.DBClient, offset int, limit int, query interface{}, args ...interface{}) {
 	db.Where(query, args).Offset(offset).Limit(limit).Find(&users)
 }
